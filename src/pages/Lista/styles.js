@@ -38,6 +38,18 @@ const styles = StyleSheet.create({
     marginHorizontal: metrics.baseMargin * 2,
     marginBottom: metrics.baseMargin - 5,
   },
+
+  noneContainer: {
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  noneText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

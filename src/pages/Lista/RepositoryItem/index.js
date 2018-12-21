@@ -30,7 +30,11 @@ const RepositoryItem = ({ repository, navigation }) => (
 
 RepositoryItem.propTypes = {
   repository: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    owner: PropTypes.shape({
+      login: PropTypes.string,
+      avatar_url: PropTypes.string,
+    }),
   }).isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func,

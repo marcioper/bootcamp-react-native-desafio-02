@@ -4,6 +4,7 @@ import api from '~/services/api';
 
 import {
   View,
+  Text,
   AsyncStorage,
   TextInput,
   TouchableOpacity,
@@ -18,6 +19,12 @@ import styles from './styles';
 import { colors } from '~/styles';
 
 export default class Lista extends Component {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
+  };
+
   static navigationOptions = () => ({
     title: 'GitIssues',
   });
@@ -78,12 +85,16 @@ export default class Lista extends Component {
   renderList = () => {
     const { repositories } = this.state;
 
-    return (
+    return repositories.length > 0 ? (
       <FlatList
         data={repositories}
         keyExtractor={item => String(item.id)}
         renderItem={this.renderListItem}
       />
+    ) : (
+      <View style={styles.noneContainer}>
+        <Text style={styles.noneText}>Nenhum repositório adicionado!</Text>
+      </View>
     );
   };
 
@@ -91,6 +102,7 @@ export default class Lista extends Component {
     const { repositoryInput, loading, error } = this.state;
     return (
       <View style={styles.container}>
+        {!!error && <Text style={styles.error}>Repositório inexistente.</Text>}
         <View style={styles.form}>
           <TextInput
             style={styles.input}
